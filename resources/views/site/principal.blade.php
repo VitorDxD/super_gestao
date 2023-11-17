@@ -1,0 +1,1 @@
+<h1 style="background: red">Página principal</h1>
