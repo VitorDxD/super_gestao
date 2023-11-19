@@ -19,3 +19,9 @@ use App\Http\Controllers\ContatoController;
 Route::get('/', [PrincipalController::class, 'principal']);
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos']);
 Route::get('contato', [ContatoController::class, 'contato']);
+
+Route::prefix('/app') -> group(function () {
+    Route::get('clientes', function () { return 'clientes';});
+    Route::get('fornecedores', function () { return 'fornecedores';});
+    Route::get('produtos', function () { return 'produtos';});
+});
