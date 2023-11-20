@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\TesteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,20 @@ use App\Http\Controllers\ContatoController;
 |
 */
 
-Route::get('/', [PrincipalController::class, 'principal']);
-Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos']);
-Route::get('contato', [ContatoController::class, 'contato']);
+Route::get('/', [PrincipalController::class, 'principal']) -> name('site.index');
+Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos']) -> name('site.sobrenos');
+Route::get('contato', [ContatoController::class, 'contato']) -> name('site.contato');
 
 Route::prefix('/app') -> group(function () {
-    Route::get('clientes', function () { return 'clientes';});
-    Route::get('fornecedores', function () { return 'fornecedores';});
-    Route::get('produtos', function () { return 'produtos';});
+    Route::get('clientes', function () { echo 'clientes';}) -> name('app.clientes');
+    Route::get('fornecedores', function () { echo 'fornecedores';}) -> name('app.fornecedores');
+    Route::get('produtos', function () { echo 'produtos';}) -> name('app.produtos');
+});
+
+Route::get('teste/{param1}/{param2}', [TesteController::class, 'teste']) -> name('teste') 
+    -> where('param1', '[0-9]+')
+    -> where('param2', '[0-9]+');
+
+Route::fallback(function () {
+    echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique aqui</a> para acessar a tela inicial.';
 });
