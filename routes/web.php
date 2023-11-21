@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
+
+use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\TesteController;
 
 /*
@@ -23,7 +25,7 @@ Route::get('contato', [ContatoController::class, 'contato']) -> name('site.conta
 
 Route::prefix('/app') -> group(function () {
     Route::get('clientes', function () { echo 'clientes';}) -> name('app.clientes');
-    Route::get('fornecedores', function () { echo 'fornecedores';}) -> name('app.fornecedores');
+    Route::get('fornecedores', [FornecedorController::class, 'index']) -> name('app.fornecedores');
     Route::get('produtos', function () { echo 'produtos';}) -> name('app.produtos');
 });
 
