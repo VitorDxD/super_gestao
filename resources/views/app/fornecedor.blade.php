@@ -12,15 +12,28 @@
     <h3>Ainda não existem fornecedores aqui.</h3>
 @endif
 
-@unless ($fornecedores[0]['status'] == 'N')
-    Fornecedor: {{ $fornecedores[0]['name'] }} 
-    <br>
-    @isset ($fornecedores[0]['cnpj'])
-        CNPJ: {{ $fornecedores[0]['cnpj'] }}
-        
-        @empty ($fornecedores[0]['cnpj'])
-            NÃO DEFINIDO
-        @endempty
-    @endisset
-@endunless
-
+@for ($i = 0; isset($fornecedores[$i]); $i++)
+    @unless ($fornecedores[$i]['status'] == 'N')
+        Fornecedor: {{ $fornecedores[$i]['name'] ?? 'Valor não definido' }} 
+        <br>
+        CNPJ: {{ $fornecedores[$i]['cnpj'] ?? 'Valor não definido' }}
+        <br>
+        Telefone: {{ $fornecedores[$i]['ddd'] ?? '' }} {{ $fornecedores[$i]['telefone'] ?? 'Valor não definido' }}
+        <br>
+        Estado: 
+        @switch ($fornecedores[$i]['ddd'])
+            @case ('11')
+                São Paulo
+                @break
+            @case ('82')
+                Alagoas
+                @break
+            @case ('85')
+                Ceará
+                @break
+            @default
+                Não identificado
+        @endswitch
+        <hr>
+    @endunless
+@endfor
