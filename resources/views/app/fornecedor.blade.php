@@ -12,6 +12,11 @@
     <h3>Ainda não existem fornecedores aqui.</h3>
 @endif
 
-@unless ($fornecedores[0]['status'] == 'S')
-    <p>Fornecedor 1 está inátivo.</p>
+@unless ($fornecedores[0]['status'] == 'N')
+    Fornecedor: {{ $fornecedores[0]['name'] }} 
+    <br>
+    @isset ($fornecedores[0]['cnpj'])
+        CNPJ: {{ $fornecedores[0]['cnpj'] }}
+    @endisset
 @endunless
+

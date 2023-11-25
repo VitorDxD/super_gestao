@@ -8,9 +8,20 @@ class FornecedorController extends Controller
 {
     public function index () {
         $fornecedores = [
-            0 => ['name' => 'João', 'status' => 'N'],
-            1 => ['name' => 'Maria', 'status' => 'N'],
-            2 => ['name' => 'Ana', 'status' => 'S'],
+            0 => [
+                'name' => 'João',
+                'status' => 'S',
+            ],
+            1 => [
+                'name' => 'Maria',
+                'status' => 'N',
+                'cnpj' => '000.000.000/00',
+            ],
+            2 => [
+                'name' => 'Ana',
+                'status' => 'S',
+                'cnpj' => '000.000.000/00',
+            ]
         ];
 
         return view('app.fornecedor', compact('fornecedores'));
