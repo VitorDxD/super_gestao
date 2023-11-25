@@ -1,27 +1,21 @@
-<h1>Número de fornecedores: {{ count($fornecedores) }}</h1>
-
 @php
-    // Esse é um comentário seguindo o padrão PHP.
+    function onlyActives ($item) {
+        return $item['status'] === 'S';
+    }
 @endphp
 
-@if (count($fornecedores) > 0 && count($fornecedores) < 10)
-    <h3>Existem apenas alguns fornecedores aqui.</h3>
-@elseif (count($fornecedores) > 10)
-    <h3>Existem muitos fornecedores aqui.</h3>
-@else
-    <h3>Ainda não existem fornecedores aqui.</h3>
-@endif
+<h1>Número de fornecedores ativos: {{ count(array_filter($fornecedores, 'onlyActives')) }}</h1>
 
-@for ($i = 0; isset($fornecedores[$i]); $i++)
-    @unless ($fornecedores[$i]['status'] == 'N')
-        Fornecedor: {{ $fornecedores[$i]['name'] ?? 'Valor não definido' }} 
+@forelse ($fornecedores as $indices => $fornecedor)
+    @unless ($fornecedor['status'] == 'N')
+        Fornecedor: {{ $fornecedor['name'] ?? 'Valor não definido' }} 
         <br>
-        CNPJ: {{ $fornecedores[$i]['cnpj'] ?? 'Valor não definido' }}
+        CNPJ: {{ $fornecedor['cnpj'] ?? 'Valor não definido' }}
         <br>
-        Telefone: {{ $fornecedores[$i]['ddd'] ?? '' }} {{ $fornecedores[$i]['telefone'] ?? 'Valor não definido' }}
+        Telefone: {{ $fornecedor['ddd'] ?? '' }} {{ $fornecedor['telefone'] ?? 'Valor não definido' }}
         <br>
         Estado: 
-        @switch ($fornecedores[$i]['ddd'])
+        @switch ($fornecedor['ddd'])
             @case ('11')
                 São Paulo
                 @break
@@ -35,5 +29,11 @@
                 Não identificado
         @endswitch
         <hr>
+
+        @if ($loop->last)
+            Total cadastrado: {{ $loop->iteration }}
+        @endif
     @endunless
-@endfor
+@empty
+    Não existem fornecedores cadastrados.
+@endforelse
