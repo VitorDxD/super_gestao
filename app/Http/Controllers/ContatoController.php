@@ -14,7 +14,7 @@ class ContatoController extends Controller
         return view('site.contato');
     }
 
-    public function criar(Request $request) {
+    public function salvar(Request $request) {
         $request->validate([
             'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
