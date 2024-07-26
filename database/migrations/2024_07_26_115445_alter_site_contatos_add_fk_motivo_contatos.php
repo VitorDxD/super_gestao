@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Cria coluna motivo_contato_id
+        // Cria coluna motivo_contatos_id
         Schema::table('site_contatos', function (Blueprint $table){
             $table->unsignedBigInteger('motivo_contatos_id');
         });

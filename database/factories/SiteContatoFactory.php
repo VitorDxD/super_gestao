@@ -18,7 +18,7 @@ class SiteContatoFactory extends Factory
             'nome' => fake() -> name(),
             'telefone' => fake() -> cellphoneNumber(),
             'email' => fake() -> email(),
-            'motivo_contato' => rand(1, 3),
+            'motivo_contatos_id' => rand(1, 3),
             'mensagem' => fake() -> text(200)
         ];
     }
