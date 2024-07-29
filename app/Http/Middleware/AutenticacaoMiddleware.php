@@ -18,7 +18,7 @@ class AutenticacaoMiddleware
         if(true) {
             return $next($request);
         } else {
-            return Response('Você não está autenticado! Esta rota precisa de autenticação!!!');
+            return Response('Acesso negado! A rota exige autenticação!!!');
         }
     }
 }
