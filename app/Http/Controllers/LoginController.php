@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -11,6 +12,7 @@ class LoginController extends Controller
     }
 
     public function autenticar(Request $request) {
+        // Validação de campos do input
         $configs = [
             'usuario' => 'email',
             'senha' => 'required'
@@ -23,6 +25,22 @@ class LoginController extends Controller
 
         $request->validate($configs, $feedbacks);
 
-        print_r($request->all());
+        
+        // Validação de existência de usuário no banco
+        $inputUser = $request->get('usuario');
+        $inputPassword = $request->get('senha');
+        
+        echo "Usuário: $inputUser | Senha: $inputPassword <br>";
+
+        $user = User::where('email', $inputUser)
+                    ->where('password', $inputPassword)
+                    ->get()
+                    ->first();
+        
+        if(isset($user->name)) {
+            echo 'Usuário existe';
+        } else {
+            echo 'Usuário não existe';
+        }
     }
 }
