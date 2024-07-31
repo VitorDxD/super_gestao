@@ -10,8 +10,12 @@ class LoginController extends Controller
     public function index(Request $request) {
         $erro = '';
 
-        if($request->get('erro')) {
+        if($request->get('erro') == 1) {
             $erro = 'Usuário e/ou senha não existe.';
+        }
+
+        if($request->get('erro') == 2) {
+            $erro = 'Necessário realizar login para ter acesso a página.';
         }
 
         return view('site.login', ['erro' => $erro]);
@@ -35,8 +39,6 @@ class LoginController extends Controller
         // Validação de existência de usuário no banco
         $inputUser = $request->get('usuario');
         $inputPassword = $request->get('senha');
-        
-        echo "Usuário: $inputUser | Senha: $inputPassword <br>";
 
         $user = User::where('email', $inputUser)
                     ->where('password', $inputPassword)
@@ -44,7 +46,12 @@ class LoginController extends Controller
                     ->first();
         
         if(isset($user->name)) {
-            echo 'Usuário logado';
+
+            session_start();
+            $_SESSION['nome'] = $user->name;
+            $_SESSION['email'] = $user->email;
+
+            return redirect()->route('app.clientes');
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }
