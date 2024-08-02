@@ -17,8 +17,8 @@
         </div>
 
         <div class="informacao-pagina">
-            <div style="width: 90%; margin: 0 auto;">
-                <table border="1" width: "100%">
+            <div style="width: 100%; margin: 40px auto;">
+                <table border="1" style="margin: 0 auto;">
                     <thead>
                         <tr>
                             <th>Nome</th>
