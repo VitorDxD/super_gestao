@@ -198,3 +198,14 @@ button:hover {
 th {
     padding: 5px;
 }
+
+.pagination {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
+}
