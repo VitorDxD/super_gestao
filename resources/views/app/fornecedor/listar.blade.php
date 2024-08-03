@@ -44,6 +44,10 @@
                 </table>
 
                 {{ $fornecedores->appends($request)->links('pagination::bootstrap-4') }}
+                <br>
+                <p>
+                    Exibindo {{ $fornecedores->count() }} fornecedores de {{ $fornecedores->total() }} ({{ $fornecedores->firstItem() }} a {{ $fornecedores->lastItem() }})
+                </p>
             </div>
         </div>
 
