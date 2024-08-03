@@ -24,7 +24,8 @@ class FornecedorController extends Controller
     public function adicionar(Request $request) {
         $msg = '';
 
-        if($request->input('_token')) {
+        // cadastrar
+        if($request->input('_token') && $request->input('id') == '') {
             $configs = [
                 'nome' => 'required|min:3|max:40',
                 'site' => 'required',
@@ -46,6 +47,26 @@ class FornecedorController extends Controller
             Fornecedor::create($request->all());
         }
 
+        // atualizar
+        if($request->input('_token') && $request->input('id') != '') {
+            $fornecedor = Fornecedor::find($request->input('id'));
+            $update = $fornecedor->update($request->all());
+
+            if($update) {
+                $msg = 'Registro atualizado com sucesso';
+            } else {
+                $msg = 'A atualização do registro falhou';
+            }
+
+            return view('app.fornecedor.adicionar', ['msg' => $msg]);
+        }
+
         return view('app.fornecedor.adicionar', ['msg' => $msg]);
+    }
+
+    public function editar(Request $request) {
+        $fornecedor = Fornecedor::find($request->id);
+
+        return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor]);
     }
 }
