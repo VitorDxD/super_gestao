@@ -44,7 +44,7 @@ Route::prefix('/app')->middleware('autenticacao')->group(function () {
     Route::get('fornecedor/editar', [FornecedorController::class, 'editar']) -> name('app.fornecedor.editar');
     Route::get('fornecedor/excluir', [FornecedorController::class, 'excluir']) -> name('app.fornecedor.excluir');
 
-    Route::get('produto', [ProdutoController::class, 'index']) -> name('app.produto');
+    Route::resource('produto', ProdutoController::class);
 });
 
 Route::get('teste/{param1}/{param2}', [TesteController::class, 'teste']) -> name('teste') 
