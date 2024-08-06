@@ -45,12 +45,9 @@ class ProdutoController extends Controller
         return redirect()->route('produto.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Produto $produto)
     {
-        //
+        return view('app.produto.show', ['produto' => $produto]);
     }
 
     /**
