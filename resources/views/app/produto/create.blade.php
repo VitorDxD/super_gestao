@@ -18,15 +18,13 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form action="" method="post">
+                <form action="{{ route('produto.store') }}" method="post">
                     @csrf
                     <input type="text" name="nome" placeholder="Nome" class="borda-preta">
 
                     <input type="text" name="descricao" placeholder="Descrição" class="borda-preta">
 
                     <input type="text" name="peso" placeholder="Peso" class="borda-preta">
-
-                    <input type="text" name="unidade_id" placeholder="Unidade ID" class="borda-preta">
 
                     <select name="unidade_id">
                         <option>-- Selecione a Unidade de Medida --</option>
