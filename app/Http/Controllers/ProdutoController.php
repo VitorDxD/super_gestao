@@ -62,11 +62,9 @@ class ProdutoController extends Controller
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->route('produto.index');
     }
 }
