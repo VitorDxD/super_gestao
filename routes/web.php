@@ -8,6 +8,7 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TesteController;
 
@@ -45,6 +46,7 @@ Route::prefix('/app')->middleware('autenticacao')->group(function () {
     Route::get('fornecedor/excluir', [FornecedorController::class, 'excluir']) -> name('app.fornecedor.excluir');
 
     Route::resource('produto', ProdutoController::class);
+    Route::resource('produto-detalhes', ProdutoDetalheController::class);
 });
 
 Route::get('teste/{param1}/{param2}', [TesteController::class, 'teste']) -> name('teste') 
