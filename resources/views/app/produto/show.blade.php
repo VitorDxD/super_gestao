@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>Peso:</th>
-                        <th>{{ $produto->peso }}</th>
+                        <th>{{ $produto->peso }} kg</th>
                     </tr>
                     <tr>
                         <th>Unidade ID:</th>
