@@ -2,7 +2,7 @@
     <form action="{{ route('produto-detalhe.update', ['produto_detalhe' => $produto_detalhe->id]) }}" method="post">
         @method('PUT')
 @else                    
-    <form action="{{ route('produto-detalhes.store') }}" method="post">
+    <form action="{{ route('produto-detalhe.store') }}" method="post">
 @endif
     @csrf
 
