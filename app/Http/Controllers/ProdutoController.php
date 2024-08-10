@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
+use App\Models\Item;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class ProdutoController extends Controller
 {
     public function index(Request $request)
     {
-        $produtos = Produto::paginate(10);
+        $produtos = Item::paginate(10);
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
@@ -40,30 +40,34 @@ class ProdutoController extends Controller
         $customAttributes = ['descricao' => 'descrição'];
 
         $request->validate($configs, $feedbacks, $customAttributes);
-        Produto::create($request->all());
+        Item::create($request->all());
 
         return redirect()->route('produto.index');
     }
 
-    public function show(Produto $produto)
+    public function show($id)
     {
+        $produto = Item::find($id);
         return view('app.produto.show', ['produto' => $produto]);
     }
 
-    public function edit(Produto $produto)
+    public function edit($id)
     {
+        $produto = Item::find($id);
         $unidades = Unidade::all();
         return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id)
     {
+        $produto = Item::find($id);
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
+        $produto = Item::find($id);
         $produto->delete();
         return redirect()->route('produto.index');
     }
