@@ -7,6 +7,8 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoProdutoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
 use App\Http\Controllers\HomeController;
@@ -35,7 +37,6 @@ Route::post('/login', [LoginController::class, 'autenticar']) -> name('site.logi
 Route::prefix('/app')->middleware('autenticacao')->group(function () {
     Route::get('home', [HomeController::class, 'index']) -> name('app.home');
     Route::get('sair', [LoginController::class, 'sair']) -> name('app.sair');
-    Route::get('cliente', [ClienteController::class, 'index']) -> name('app.cliente');
 
     Route::get('fornecedor', [FornecedorController::class, 'index']) -> name('app.fornecedor');
     Route::get('fornecedor/listar', [FornecedorController::class, 'listar']) -> name('app.fornecedor.listar');
@@ -47,6 +48,9 @@ Route::prefix('/app')->middleware('autenticacao')->group(function () {
 
     Route::resource('produto', ProdutoController::class);
     Route::resource('produto-detalhe', ProdutoDetalheController::class);
+    Route::resource('cliente', ClienteController::class);
+    Route::resource('pedido', PedidoController::class);
+    Route::resource('pedido-produto', PedidoProdutoController::class);
 });
 
 Route::get('teste/{param1}/{param2}', [TesteController::class, 'teste']) -> name('teste') 
