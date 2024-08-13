@@ -25,6 +25,7 @@
                             <th>Site</th>
                             <th>UF</th>
                             <th>Email</th>
+                            <th>Produtos</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -36,6 +37,7 @@
                                 <th>{{ $fornecedor->site }}</th>
                                 <th>{{ $fornecedor->uf }}</th>
                                 <th>{{ $fornecedor->email }}</th>
+                                <th>{{ $fornecedor->produtos->count() }}</th>
                                 <th><a href="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}">Editar</a></th>
                                 <th><a href="{{ route('app.fornecedor.excluir', ['id' => $fornecedor->id]) }}">Excluir</a></th>
                             </tr>
