@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pedido;
+use App\Models\Item;
 
 class PedidoProdutoController extends Controller
 {
@@ -14,20 +16,19 @@ class PedidoProdutoController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(Pedido $pedido)
     {
-        //
+        $produtos = Item::all();
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, Pedido $pedido)
     {
-        //
+        echo '<pre>';
+        print_r($pedido);
+        echo '</pre>';
+        echo '<hr>';
+        print_r($request->all());
     }
 
     /**

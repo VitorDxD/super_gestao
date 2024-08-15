@@ -26,6 +26,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <tr>
                                 <th>{{ $pedido->id }}</th>
                                 <th>{{ $pedido->cliente_id }}</th>
+                                <th><a href="{{ route('pedido-produto.create', ['pedido' => $pedido]) }}">Adicionar Produtos</a></th>
                                 <th><a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">Visualizar</a></th>
                                 <th><a href="{{ route('pedido.edit', ['pedido' => $pedido->id]) }}">Editar</a></th>
                                 <th>
