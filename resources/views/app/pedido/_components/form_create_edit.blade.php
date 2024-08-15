@@ -16,7 +16,7 @@
         @endforeach
         
     </select>
-    {{ $errors->has('cliente_id') ? $errors->first('cliente_id') : '' }}
+    {{ $errors->first('cliente_id') ?? '' }}
 
     <button type="submit" class="borda-preta">
         {{ isset($cliente) ? 'Atualizar' : 'Cadastrar' }}

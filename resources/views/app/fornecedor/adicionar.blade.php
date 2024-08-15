@@ -24,16 +24,16 @@
                     <input type="hidden" name="id" value="{{ $fornecedor->id ?? '' }}">
                     
                     <input type="text" value="{{ $fornecedor->nome ?? old('nome') }}" name="nome" placeholder="Nome" class="borda-preta">
-                    {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+                    {{ $errors->first('nome') ?? '' }}
 
                     <input type="text" value="{{ $fornecedor->site ?? old('site') }}" name="site" placeholder="Site" class="borda-preta">
-                    {{ $errors->has('site') ? $errors->first('site') : '' }}
+                    {{ $errors->first('site') ?? '' }}
 
                     <input type="text" value="{{ $fornecedor->uf ?? old('uf') }}" name="uf" placeholder="UF" class="borda-preta">
-                    {{ $errors->has('uf') ? $errors->first('uf') : '' }}
+                    {{ $errors->first('uf') ?? '' }}
 
                     <input type="text" value="{{ $fornecedor->email ?? old('email') }}" name="email" placeholder="Email" class="borda-preta">
-                    {{ $errors->has('email') ? $errors->first('email') : '' }}
+                    {{ $errors->first('email') ?? '' }}
 
                     <button type="submit" class="borda-preta">
                         {{ isset($fornecedor) ? 'Atualizar' : 'Cadastrar' }}
