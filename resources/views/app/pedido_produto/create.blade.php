@@ -18,7 +18,7 @@
 
         <div class="informacao-pagina">
             <h4>Detalhes do pedido</h4>
-            <p>Id do produto: {{ $pedido->id }}</p>
+            <p>Id do pedido: {{ $pedido->id }}</p>
             <p>Cliente: {{ $pedido->cliente_id }}</p>
 
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
